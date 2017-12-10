@@ -9,9 +9,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const selectable = false;
-const data = [{id: 0, start: "3-11-2017", end: "5-11-2017"},{id: 0, start: "20-11-2017",end: "3-12-2017"}];
-
 class PossibleDates extends Component{
   
   render() {
