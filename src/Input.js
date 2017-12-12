@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DatePicker from 'material-ui/DatePicker';
-import './App.css'
+import './Style.css'
+import { Paper } from 'material-ui/Paper';
 
 
 class Input extends Component {
@@ -20,6 +21,7 @@ class Input extends Component {
         }
     }
 
+
     updateStartDate(pDate){
         this.setState((currentState) => currentState.startDate = pDate.toString())
     }
@@ -29,14 +31,16 @@ class Input extends Component {
     }
     render () {
         return (
-            <div >
-                <DatePicker hintText="Start" onChange={(x, date) => this.updateStartDate(date)}/>
-                <DatePicker hintText="End" onChange={(x,date) => this.updateEndDate(date)}/>
+            
+            <div className="inputDates">
+                <DatePicker hintText="Start" onChange={(x, date) => this.updateStartDate(date)} className="dateInput"/>
+                <DatePicker hintText="End" onChange={(x,date) => this.updateEndDate(date)} className="dateInput"/>
 
-                <FloatingActionButton onClick={this.handleInput.bind(this)}>
+                <FloatingActionButton onClick={this.handleInput.bind(this)} className="dateInput">
                     <ContentAdd />
                 </FloatingActionButton>
             </div>
+            
         );
     }
 }

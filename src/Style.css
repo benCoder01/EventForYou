@@ -1,0 +1,22 @@
+.inputNameId{
+  align-content: center;
+  display: flex;
+}
+
+.textField{
+  margin: 10px;
+
+}
+
+
+body{
+  margin: 0;
+}
+
+.inputDates{
+  display: flex;
+}
+
+.dateInput{
+  margin: 10px;  
+}

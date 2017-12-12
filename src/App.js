@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Style.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PossibleDates from './PossibleDates'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import AppBar from 'material-ui/AppBar';
 import Input from './Input';
 import firebase from "./firebase";
 
+
 const db = firebase.firestore();
 const events = db.collection("events").doc("events");
-
 
 class App extends Component {
   constructor(props){
@@ -22,6 +23,21 @@ class App extends Component {
       errorMessageName: "",
       errorMessageId: ""
     }; 
+  }
+
+
+  deleteRow = (element) => {
+
+    var newDateArray = this.state.possibleDates;
+    var indexOfElement = newDateArray.indexOf(element);
+    delete newDateArray[indexOfElement];
+    console.log(indexOfElement)
+
+    this.setState({possibleDates: newDateArray});
+    this.setState((currentState) => {
+      currentState.possibleDates = newDateArray;
+    });
+    
   }
 
   updateDate = (dateStart, dateEnd) => (    
@@ -61,25 +77,32 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
+         <AppBar
+            iconElementLeft={undefined}
+            title="Event4You"
+          />
+        <div className="inputNameId"> 
         
         <TextField 
+          className="textField"
           hintText="Name" 
           multiLine={false} 
-          fullWidth={true} 
+          fullWidth={false} 
           onChange={(event, newValue) => this.handleName(event, newValue)} 
           errorText={this.state.errorMessageName}
         />
         <TextField 
+          className="textField"
           hintText="Event Id" 
           multiLine={false} 
-          fullWidth={true} 
+          fullWidth={false} 
           onChange={(event, newValue) => this.handleId(event, newValue)} 
           errorText={this.state.errorMessageId}
         />
+        </div>
 
-        
-        <Input addDate={this.updateDate.bind(this)}/>
-        <PossibleDates dates={this.state.possibleDates}/>
+        <Input  addDate={this.updateDate.bind(this)}  />
+        <PossibleDates dates={this.state.possibleDates} deleteRow={this.deleteRow.bind(this)} />
         
         <TextField 
           hintText="Your Comment here" 
@@ -88,6 +111,7 @@ class App extends Component {
           onChange = {(event, newValue) => this.handleComment(event, newValue)}
         />
         <RaisedButton label="Accept" fullWidth={true} onClick={(event) => this.handleAccept(event)} />
+    
       </MuiThemeProvider>
       
     );
