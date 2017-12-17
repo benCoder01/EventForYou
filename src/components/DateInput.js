@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DatePicker from 'material-ui/DatePicker';
-import './Style.css'
-import { Paper } from 'material-ui/Paper';
 
 
-class Input extends Component {
+class DateInput extends Component {
     constructor(props){
         super(props);
-        this.state = { 
+        this.state = {
             startDate: "",
             endDate: "",
         }
@@ -31,7 +29,7 @@ class Input extends Component {
     }
     render () {
         return (
-            
+
             <div className="inputDates">
                 <DatePicker hintText="Start" onChange={(x, date) => this.updateStartDate(date)} className="dateInput"/>
                 <DatePicker hintText="End" onChange={(x,date) => this.updateEndDate(date)} className="dateInput"/>
@@ -40,9 +38,9 @@ class Input extends Component {
                     <ContentAdd />
                 </FloatingActionButton>
             </div>
-            
+
         );
     }
 }
 
-export default Input;
+export default DateInput;

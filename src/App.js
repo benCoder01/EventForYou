@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import './Style.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import PossibleDates from './PossibleDates'
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
-import Input from './Input';
+
 import firebase from "./firebase";
+
+//own components
+import DateInput from './components/DateInput';
+import ListDates from './components/ListDates'
 
 
 const db = firebase.firestore();
 const events = db.collection("events").doc("events");
 
+
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      possibleDates: [], 
-      name: "", 
+      possibleDates: [],
+      name: "",
       comment: "",
       id: "",
       errorMessageName: "",
       errorMessageId: ""
-    }; 
+    };
   }
 
 
@@ -37,11 +40,11 @@ class App extends Component {
     this.setState((currentState) => {
       currentState.possibleDates = newDateArray;
     });
-    
+
   }
 
-  updateDate = (dateStart, dateEnd) => (    
-    this.setState((currentState) => currentState.possibleDates.push({start: dateStart, end: dateEnd}))   
+  updateDate = (dateStart, dateEnd) => (
+    this.setState((currentState) => currentState.possibleDates.push({start: dateStart, end: dateEnd}))
   );
 
   handleAccept(e){
@@ -72,51 +75,52 @@ class App extends Component {
 
   handleComment = (e, text) => this.setState({comment: text})
 
-  handleId = (e, text) => this.setState({id: text}) 
+  handleId = (e, text) => this.setState({id: text})
 
   render() {
     return (
       <MuiThemeProvider>
-         <AppBar
-            iconElementLeft={undefined}
-            title="Event4You"
-          />
-        <div className="inputNameId"> 
-        
-        <TextField 
+
+        <AppBar
+          iconElementLeft={undefined}
+          title="Event4You"
+        />
+
+        <TextField
           className="textField"
-          hintText="Name" 
-          multiLine={false} 
-          fullWidth={false} 
-          onChange={(event, newValue) => this.handleName(event, newValue)} 
+          hintText="Name"
+          multiLine={false}
+          fullWidth={false}
+          onChange={(event, newValue) => this.handleName(event, newValue)}
           errorText={this.state.errorMessageName}
         />
-        <TextField 
+        <TextField
           className="textField"
-          hintText="Event Id" 
-          multiLine={false} 
-          fullWidth={false} 
-          onChange={(event, newValue) => this.handleId(event, newValue)} 
+          hintText="Event Id"
+          multiLine={false}
+          fullWidth={false}
+          onChange={(event, newValue) => this.handleId(event, newValue)}
           errorText={this.state.errorMessageId}
         />
-        </div>
 
-        <Input  addDate={this.updateDate.bind(this)}  />
-        <PossibleDates dates={this.state.possibleDates} deleteRow={this.deleteRow.bind(this)} />
-        
-        <TextField 
-          hintText="Your Comment here" 
-          multiLine = {true} 
+        <DateInput  addDate={this.updateDate.bind(this)}  />
+        <ListDates dates={this.state.possibleDates} deleteRow={this.deleteRow.bind(this)} />
+
+
+        <TextField
+          hintText="Your Comment here"
+          multiLine = {true}
           fullWidth={true}
           onChange = {(event, newValue) => this.handleComment(event, newValue)}
         />
+
+
         <RaisedButton label="Accept" fullWidth={true} onClick={(event) => this.handleAccept(event)} />
-    
+
       </MuiThemeProvider>
-      
+
     );
   }
 }
 
 export default App;
-
