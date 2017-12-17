@@ -8,12 +8,11 @@ import firebase from "./firebase";
 
 //own components
 import DateInput from './components/DateInput';
-import ListDates from './components/ListDates'
-
+import ListDates from './components/ListDates';
+import Sidebar from './components/Sidebar';
 
 const db = firebase.firestore();
 const events = db.collection("events").doc("events");
-
 
 class App extends Component {
   constructor(props){
@@ -24,7 +23,8 @@ class App extends Component {
       comment: "",
       id: "",
       errorMessageName: "",
-      errorMessageId: ""
+      errorMessageId: "",
+      sidebarOpen: false
     };
   }
 
@@ -66,10 +66,11 @@ class App extends Component {
     }else{
       if(this.state.name === "") this.setState({errorMessageName: "Name is missing"})
       if(this.state.id === "") this.setState({errorMessageId: "Event-Id is missing"})
-
     }
 
   }
+
+  handleButtonAppBar = (e) => this.setState({sidebarOpen: !this.state.sidebarOpen})
 
   handleName = (e, text) => this.setState({name: text})
 
@@ -79,12 +80,15 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider >
 
         <AppBar
           iconElementLeft={undefined}
           title="Event4You"
+          onLeftIconButtonClick = {(event) => this.handleButtonAppBar(event)}
         />
+
+        <Sidebar open={this.state.sidebarOpen}/>
 
         <TextField
           className="textField"
