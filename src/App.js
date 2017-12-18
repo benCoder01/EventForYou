@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
-import AppBar from 'material-ui/AppBar';
+
 
 import firebase from "./firebase";
 
 //own components
 import DateInput from './components/DateInput';
-import ListDates from './components/ListDates';
-import Sidebar from './components/Sidebar';
+import DatesList from './components/DatesList';
+import Navigaton from './components/Navigation';
+import UserInformation from './components/UserInformation';
+
+import './assets/App.css';
 
 const db = firebase.firestore();
 const events = db.collection("events").doc("events");
@@ -24,7 +28,6 @@ class App extends Component {
       id: "",
       errorMessageName: "",
       errorMessageId: "",
-      sidebarOpen: false
     };
   }
 
@@ -70,7 +73,6 @@ class App extends Component {
 
   }
 
-  handleButtonAppBar = (e) => this.setState({sidebarOpen: !this.state.sidebarOpen})
 
   handleName = (e, text) => this.setState({name: text})
 
@@ -80,36 +82,23 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider >
+    <MuiThemeProvider >
 
-        <AppBar
-          iconElementLeft={undefined}
-          title="Event4You"
-          onLeftIconButtonClick = {(event) => this.handleButtonAppBar(event)}
+        <Navigaton />
+
+        <UserInformation
+          errorMessageId={this.state.errorMessageId}
+          errorMessageName={this.state.errorMessageName}
         />
 
-        <Sidebar open={this.state.sidebarOpen}/>
-
-        <TextField
-          className="textField"
-          hintText="Name"
-          multiLine={false}
-          fullWidth={false}
-          onChange={(event, newValue) => this.handleName(event, newValue)}
-          errorText={this.state.errorMessageName}
-        />
-        <TextField
-          className="textField"
-          hintText="Event Id"
-          multiLine={false}
-          fullWidth={false}
-          onChange={(event, newValue) => this.handleId(event, newValue)}
-          errorText={this.state.errorMessageId}
-        />
+        <Divider />
 
         <DateInput  addDate={this.updateDate.bind(this)}  />
-        <ListDates dates={this.state.possibleDates} deleteRow={this.deleteRow.bind(this)} />
 
+        <DatesList
+          dates={this.state.possibleDates}
+          deleteRow={this.deleteRow.bind(this)}
+        />
 
         <TextField
           hintText="Your Comment here"
@@ -119,9 +108,12 @@ class App extends Component {
         />
 
 
-        <RaisedButton label="Accept" fullWidth={true} onClick={(event) => this.handleAccept(event)} />
-
-      </MuiThemeProvider>
+        <RaisedButton
+          label="Accept"
+          fullWidth={true}
+          onClick={(event) => this.handleAccept(event)}
+        />
+    </MuiThemeProvider>
 
     );
   }

@@ -11,15 +11,13 @@ import IconButton from 'material-ui/IconButton';
 import DeleteItemSvg from 'material-ui/svg-icons/action/highlight-off'
 import Paper from 'material-ui/Paper';
 
+import '../assets/DatesList.css';
 
-
-
-
-class ListDates extends Component{
+class DatesList extends Component{
 
   render() {
       return(
-      <Paper zDepth={2}>
+      <Paper zDepth={2} className="container">
         <Table>
 
           <TableHeader displaySelectAll={false}>
@@ -48,4 +46,4 @@ class ListDates extends Component{
   }
 }
 
-export default ListDates;
+export default DatesList;

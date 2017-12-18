@@ -5,6 +5,9 @@ import DatePicker from 'material-ui/DatePicker';
 
 import areIntlLocalesSupported from 'intl-locales-supported';
 
+import '../assets/DateInput.css';
+
+
 let DateTimeFormat;
 
 if (areIntlLocalesSupported(['de'])) {
@@ -45,22 +48,24 @@ class DateInput extends Component {
 
     render () {
         return (
-            <div className="inputDates">
+            <div className="container">
                 <DatePicker
                   DateTimeFormat={DateTimeFormat}
                   locale="de" hintText="Start"
                   onChange={(x, date) => this.updateStartDate(date)}
-                  className="dateInput"
+                  className="item"
                 />
 
                 <DatePicker
                   DateTimeFormat={DateTimeFormat}
                   locale="de" hintText="End"
                   onChange={(x,date) => this.updateEndDate(date)}
-                  className="dateInput"
+                  className="item"
                 />
 
-                <FloatingActionButton onClick={this.handleInput.bind(this)} className="dateInput">
+                <FloatingActionButton
+                  onClick={this.handleInput.bind(this)}
+                  className="item">
                     <ContentAdd />
                 </FloatingActionButton>
             </div>

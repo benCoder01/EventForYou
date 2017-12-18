@@ -1,9 +1,8 @@
-
-.inputNameId {
+.container {
   display: flex;
   flex-wrap: wrap;
 }
 
-.textField {
+.item {
   margin: 10px;
 }
