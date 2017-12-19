@@ -7,16 +7,14 @@ import areIntlLocalesSupported from 'intl-locales-supported';
 
 import '../assets/DateInput.css';
 
-
+//Get the Dateformat for the Datepicker
 let DateTimeFormat;
 
 if (areIntlLocalesSupported(['de'])) {
   DateTimeFormat = global.Intl.DateTimeFormat;
-
 } else {
   const IntlPolyfill = require('intl');
   DateTimeFormat = IntlPolyfill.DateTimeFormat;
-
   require('intl/locale-data/jsonp/de');
 }
 
@@ -24,6 +22,7 @@ if (areIntlLocalesSupported(['de'])) {
 class DateInput extends Component {
     constructor(props){
         super(props);
+
         this.state = {
             startDate: "",
             endDate: "",
@@ -49,6 +48,7 @@ class DateInput extends Component {
     render () {
         return (
             <div className="container">
+                <div className="datePicker">
                 <DatePicker
                   DateTimeFormat={DateTimeFormat}
                   locale="de" hintText="Start"
@@ -62,10 +62,13 @@ class DateInput extends Component {
                   onChange={(x,date) => this.updateEndDate(date)}
                   className="item"
                 />
+                </div>
 
                 <FloatingActionButton
                   onClick={this.handleInput.bind(this)}
-                  className="item">
+                  className="item"
+                  secondary={true}
+                  >
                     <ContentAdd />
                 </FloatingActionButton>
             </div>

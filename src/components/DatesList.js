@@ -27,14 +27,18 @@ class DatesList extends Component{
               <TableHeaderColumn></TableHeaderColumn>
             </TableRow>
           </TableHeader>
-
+      
           <TableBody displayRowCheckbox={false}>
             {this.props.dates.map(n => {
                 return(
                     <TableRow >
                       <TableRowColumn>{n.start}</TableRowColumn>
                       <TableRowColumn>{n.end}</TableRowColumn>
-                      <TableRowColumn><IconButton onClick = {(event) => this.props.deleteRow(n)}><DeleteItemSvg /></IconButton></TableRowColumn>
+                      <TableRowColumn>
+                        <IconButton onClick = {(event) => this.props.deleteRow(n)}>
+                          <DeleteItemSvg />
+                        </IconButton>
+                      </TableRowColumn>
                     </TableRow>
                 );
             })}

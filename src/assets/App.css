@@ -1,9 +1,15 @@
-
-.inputNameId {
-  display: flex;
-  flex-wrap: wrap;
+.publishDates-container {
+  margin-top: 20px;
 }
 
-.textField {
-  margin: 10px;
+@media (min-width: 48em) {
+  .textInput{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+.btnAccept {
+  margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
 }

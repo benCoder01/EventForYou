@@ -1,8 +1,11 @@
 .container{
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .textField {
   margin-bottom: 15px;
+  margin: 10px;
 }

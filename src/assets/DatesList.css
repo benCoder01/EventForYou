@@ -1,5 +1,11 @@
 .container {
   margin-top: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
+
+}
+
+@media (min-width: 48em) {
+  .container{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }

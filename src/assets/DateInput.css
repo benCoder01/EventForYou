@@ -1,8 +1,14 @@
 .container {
   display: flex;
   flex-wrap: wrap;
+
 }
 
 .item {
   margin: 10px;
+}
+
+.datePicker {
+  align-items: center;
+  justify-content: center;
 }

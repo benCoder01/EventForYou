@@ -99,20 +99,26 @@ class App extends Component {
           dates={this.state.possibleDates}
           deleteRow={this.deleteRow.bind(this)}
         />
+        <div className="publishDates-container">
+          <div className="textInput">
+          <TextField
+            hintText="Your Comment here"
+            multiLine = {true}
+            fullWidth={true}
+            onChange = {(event, newValue) => this.handleComment(event, newValue)}
+          />
+          </div>
 
-        <TextField
-          hintText="Your Comment here"
-          multiLine = {true}
-          fullWidth={true}
-          onChange = {(event, newValue) => this.handleComment(event, newValue)}
-        />
+          <div className="btnAccept">
+          <RaisedButton
+            label="Accept"
+            fullWidth={true}
+            onClick={(event) => this.handleAccept(event)}
+            primary={true}
+          />
+          </div>
 
-
-        <RaisedButton
-          label="Accept"
-          fullWidth={true}
-          onClick={(event) => this.handleAccept(event)}
-        />
+        </div>
     </MuiThemeProvider>
 
     );
