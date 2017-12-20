@@ -89,7 +89,9 @@ class App extends Component {
         <UserInformation
           errorMessageId={this.state.errorMessageId}
           errorMessageName={this.state.errorMessageName}
-        />
+       	  handleName ={this.handleName.bind(this)}
+	  handleId ={this.handleId.bind(this)}
+	 />
 
         <Divider />
 
@@ -108,7 +110,6 @@ class App extends Component {
             onChange = {(event, newValue) => this.handleComment(event, newValue)}
           />
           </div>
-
           <div className="btnAccept">
           <RaisedButton
             label="Accept"

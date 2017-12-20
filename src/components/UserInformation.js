@@ -13,16 +13,16 @@ class UserInformation extends Component {
             hintText="Name"
             multiLine={false}
             fullWidth={false}
-            onChange={(event, newValue) => this.handleName(event, newValue)}
+            onChange={(event, newValue) => this.props.handleName(event, newValue)}
             errorText={this.props.errorMessageName}
           />
-        
+
           <TextField
             className="textField"
             hintText="Event Id"
             multiLine={false}
             fullWidth={false}
-            onChange={(event, newValue) => this.handleId(event, newValue)}
+            onChange={(event, newValue) => this.props.handleId(event, newValue)}
             errorText={this.props.errorMessageId}
           />
         </div>
